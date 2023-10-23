@@ -1,13 +1,11 @@
 <template>
-
+  <div>asdds</div>
 </template>
 
-<script>
+<script lang="ts">
 export default {
-  name: "MainPage"
+  name: 'MainPage',
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -4,9 +4,13 @@ export interface IAuthData {
   accessToken?: string
   refreshToken?: string
 }
-export const useAuth = defineStore('auth', {
-  state(): IAuthData {
-    return {}
+export const useAuth = defineStore({
+  id: 'auth',
+  state: (): IAuthData => {
+    return {
+      accessToken: '',
+      refreshToken: '',
+    }
   },
   actions: {
     changeToken(data: IAuthData) {
@@ -18,4 +22,5 @@ export const useAuth = defineStore('auth', {
     },
     refresh() {},
   },
+  persist: true,
 })
