@@ -12,8 +12,9 @@ export interface Statistics {
     login: string
     password: string
   }
-  info?: StatisticsInfo[]
+  info?: Map<string, StatisticsInfo[]>
 }
+export type StatisticsInfoStatus = 'enabled' | 'disabled' | 'none'
 export interface StatisticsInfo {
   name: string
   budget: string
@@ -23,5 +24,5 @@ export interface StatisticsInfo {
   ctr: string
   views: string
   expenses: string
-  status: 'enabled' | 'disabled' | 'none'
+  status: StatisticsInfoStatus
 }

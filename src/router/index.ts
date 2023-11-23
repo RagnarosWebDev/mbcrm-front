@@ -4,6 +4,10 @@ import LoginPage from '@pages/LoginPage.vue'
 import { useAuth } from '@store/auth.store.ts'
 import StatisticsPage from '@pages/StatisticsPage.vue'
 import TasksPage from '@pages/TasksPage.vue'
+import ProfilePage from '@pages/ProfilesPage.vue'
+import UsersPage from '@pages/UsersPage.vue'
+import ProxyPage from '@pages/ProxiesPage.vue'
+import StatInfoPage from '@pages/StatInfoPage.vue'
 
 const routes: RouteRecordRaw[] = [
   {
@@ -34,12 +38,48 @@ const routes: RouteRecordRaw[] = [
     },
   },
   {
+    name: 'Profile',
+    component: ProfilePage,
+    path: '/profiles',
+    meta: {
+      isRequiredLogin: true,
+      isNeedNavigation: true,
+    },
+  },
+  {
+    name: 'Users',
+    component: UsersPage,
+    path: '/users',
+    meta: {
+      isRequiredLogin: true,
+      isNeedNavigation: true,
+    },
+  },
+  {
     name: 'Login',
     component: LoginPage,
     path: '/login',
     meta: {
       isRequiredLogin: false,
       isNeedNavigation: false,
+    },
+  },
+  {
+    name: 'Proxies',
+    component: ProxyPage,
+    path: '/proxies',
+    meta: {
+      isRequiredLogin: true,
+      isNeedNavigation: true,
+    },
+  },
+  {
+    name: 'Stat',
+    component: StatInfoPage,
+    path: '/statInfo',
+    meta: {
+      isRequiredLogin: true,
+      isNeedNavigation: true,
     },
   },
 ]
