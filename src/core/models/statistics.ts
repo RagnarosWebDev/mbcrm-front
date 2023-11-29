@@ -1,3 +1,5 @@
+import { PairDateDto } from '@models/date.ts'
+
 export interface Statistics {
   id: number
   uuid: string
@@ -13,6 +15,7 @@ export interface Statistics {
     password: string
   }
   info?: Map<string, StatisticsInfo[]>
+  dates: PairDateDto[]
 }
 export type StatisticsInfoStatus = 'enabled' | 'disabled' | 'none'
 export interface StatisticsInfo {

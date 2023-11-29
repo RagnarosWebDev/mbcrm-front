@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { Ref, ref } from 'vue'
-import { storeToRefs } from 'pinia'
-import { useDates } from '@store/dates.store.ts'
 import { Statistics } from '@models/statistics.ts'
 import { PairDateDto } from '@models/date.ts'
 
@@ -10,23 +8,14 @@ const props = defineProps<{
   stats: Map<string, Statistics[]>
   selectedDate: string
   onDateChanged: (date: string) => void
+  dates: PairDateDto[]
 }>()
-
-const dates = useDates()
-const { getDatesById } = storeToRefs(dates)
 
 const startDate = ref([new Date()])
 const endDate = ref([new Date()])
-
-const formatter = new Intl.DateTimeFormat('ru')
-
 const addNewDate = (isActive: Ref<boolean>) => {
   isActive.value = false
   console.log(startDate.value + ' ' + endDate.value)
-  dates.addNewDate(props.itemId, {
-    startDate: formatter.format(startDate.value[0]),
-    endDate: formatter.format(endDate.value[0]),
-  })
 }
 
 const calcDate = (date: PairDateDto) => {
@@ -53,7 +42,7 @@ const onDateCanChanged = (date: PairDateDto) => {
       :active="!stats.has(calcDate(currentDate))"
       :color="compareDates(selectedDate, currentDate) ? 'green' : 'white'"
       @click="onDateCanChanged(currentDate)"
-      v-for="currentDate in getDatesById(itemId)"
+      v-for="currentDate in dates"
     >
       {{ currentDate.startDate }} -
       {{ currentDate.endDate }}

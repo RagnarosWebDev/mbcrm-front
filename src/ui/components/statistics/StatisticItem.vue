@@ -9,20 +9,14 @@ import { updateById } from '@api/index.ts'
 import { Task } from '@models/task.ts'
 import { useToast } from 'vue-toastification'
 import StatisticsDatesList from '@components/statistics/StatisticsDatesList.vue'
-import { storeToRefs } from 'pinia'
-import { useDates } from '@store/dates.store.ts'
 
 const tasks = useTasks()
-const { getDatesById } = storeToRefs(useDates())
 
 const updateAll = () => {
-  handleRequest(
-    updateById(props.item.id, getDatesById.value(props.item.id)),
-    (e: Task) => {
-      tasks.addNewTask(e.uuid)
-      useToast().success('Началось обновление')
-    },
-  )
+  handleRequest(updateById(props.item.id), (e: Task) => {
+    tasks.addNewTask(e.uuid)
+    useToast().success('Началось обновление')
+  })
 }
 const props = defineProps<{ item: Statistics }>()
 
@@ -46,6 +40,7 @@ const onDateChanged = (date: string) => {
         <StatisticsDatesList
           :selectedDate="selectedDate"
           :onDateChanged="onDateChanged"
+          :dates="props.item.dates"
           :itemId="item.id"
           :stats="stats"
         />

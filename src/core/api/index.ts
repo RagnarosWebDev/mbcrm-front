@@ -5,7 +5,6 @@ import { Statistics } from '@models/statistics.ts'
 import { Task } from '@models/task.ts'
 import { ProfileInfo } from '@models/profile.ts'
 import { CreateUser, UpdateUser } from '@models/user.ts'
-import { PairDateDto } from '@models/date.ts'
 import { StatInfo } from '@models/stat-info.ts'
 
 export const baseURL = 'http://77.91.122.158:8080/'
@@ -36,10 +35,9 @@ export const getStatistics = (row: number) => {
   })
 }
 
-export const updateById = (id: number, dates: PairDateDto[]) => {
+export const updateById = (id: number) => {
   return axiosInstance.put<Task>('/statistics/update', {
     id,
-    dates,
   })
 }
 
